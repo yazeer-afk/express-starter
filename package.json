@@ -5,10 +5,14 @@
   "main": "dist/index.js",
   "author": "Yazeer Ahamed",
   "license": "MIT",
+  "engines": {
+    "node": "14.x"
+  },
   "private": false,
   "scripts": {
     "build": "tsc",
-    "start": "tsc & nodemon .",
+    "start": "node dist/index",
+    "serve": "tsc & nodemon .",
     "dev": "tsc -w & nodemon ."
   },
   "dependencies": {
@@ -16,11 +20,12 @@
     "express": "^4.17.1",
     "express-async-errors": "^3.1.1",
     "http-status-codes": "^2.1.4",
-    "mongoose": "^6.0.14"
+    "node-cron": "^3.0.0"
   },
   "devDependencies": {
     "@types/express": "^4.17.13",
     "@types/node": "^16.11.11",
+    "@types/node-cron": "^3.0.0",
     "@typescript-eslint/eslint-plugin": "^5.5.0",
     "@typescript-eslint/parser": "^5.5.0",
     "eslint": "^8.3.0",

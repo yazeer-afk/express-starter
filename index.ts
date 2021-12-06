@@ -1,9 +1,9 @@
 import express, {json} from 'express'
 import dotenv from 'dotenv'
+import cron from 'node-cron'
 import 'express-async-errors'
 import { errorHandlerMiddleware } from './middleware/error-handler'
 import { notFound } from './middleware/not-found'
-import { connectDB } from './db/db-connect'
 
 dotenv.config()
 const app = express()
@@ -17,6 +17,10 @@ app.get('/', (_, res) => {
   res.status(200).send()
 })
 
+cron.schedule('* * * * * *', () => {
+    console.log('running a task every minute');
+  });
+
 // Start of routes
 
 
@@ -27,7 +31,6 @@ app.use(notFound)
 
 const start = async () => {
     try {
-        await connectDB(process.env.MONGO_URI as string)
         app.listen(port, () => console.log(`Running on port ${port}`))
     } catch (error) {
         console.log(error)
